@@ -4,11 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+
+
 @Entity
 public class Product {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String id;
 	private String name;
 	private String description;
@@ -39,6 +43,10 @@ public class Product {
 		this.price = price;
 	}
 	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+	}
 	
 	
 
